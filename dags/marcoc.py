@@ -5,10 +5,12 @@ from textwrap import dedent
 # The DAG object; we'll need this to instantiate a DAG
 from airflow import DAG
 
+from elasticsearch.client import Elasticsearch
+
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
 with DAG(
-    'marcoc',
+    'dwdi example',
     # These args will get passed on to each operator
     # You can override them on a per-task basis during operator initialization
     default_args={
@@ -31,7 +33,7 @@ with DAG(
         # 'sla_miss_callback': yet_another_function,
         # 'trigger_rule': 'all_success'
     },
-    description='A simple tutorial DAG',
+    description='DWDI BluePrint Elements',
     schedule_interval=timedelta(minutes=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
