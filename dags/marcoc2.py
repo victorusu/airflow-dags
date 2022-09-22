@@ -64,7 +64,7 @@ def marcoc_dag():
         else:
             return 1
 
-    get_raw_es_data() >> check_es_data_consistency()
+    # get_raw_es_data() >> check_es_data_consistency()
 
 
 # Set the DAG to the one we just implemented
