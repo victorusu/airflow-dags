@@ -9,6 +9,7 @@ from elasticsearch.client import Elasticsearch
 
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
+
 with DAG(
     'dwdi_example',
     # These args will get passed on to each operator
