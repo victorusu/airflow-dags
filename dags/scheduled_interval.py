@@ -42,12 +42,12 @@ def send_data_back_to_es(es_data, data_stream_name):
 
 
 @dag(
-    schedule_interval="0 0 * * *",
+    schedule_interval=timedelta(minutes=5),
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
-    catchup=False,
+    catchup=True,
     dagrun_timeout=datetime.timedelta(minutes=5),
 )
-def marcoc_dag():
+def scheduled_interval():
 
     es_data = None
     data_stream = "populate yours here"
@@ -67,11 +67,15 @@ def marcoc_dag():
         else:
             return 1
 
-    # get_raw_es_data() >> check_es_data_consistency()
+    @task
+    def send_data_to_es():
+        send_data_back_to_es(es_data, data_stream)
+
+    get_raw_es_data() >> check_es_data_consistency() >> send_data_to_es()
 
 
 # Set the DAG to the one we just implemented
-dag = marcoc_dag()
+dag = scheduled_interval()
 
 # def create_es_client():
 #     # Basic Elasticsearch info
