@@ -18,7 +18,7 @@ from airflow.decorators import dag, task
 # from airflow.operators.bash import BashOperator
 # from airflow.providers.elasticsearch.hooks.elasticsearch
 
-from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchPythonHook
+from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchHook
 
 @dag(
     schedule_interval="0 0 * * *",
@@ -29,10 +29,11 @@ from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchPyt
 )
 
 def use_elasticsearch_hook(query_dict):
-    es_hook = ElasticsearchPythonHook(hosts=["https://elastic-gbets-master:9200"])
+    # es_hook = ElasticsearchPythonHook(hosts=["https://elastic-gbets-master:9200"])
     # query = {"query": {"match_all": {}}}
     # self.es_result = es_hook.search(query=query)
-    return es_hook.search(query=query_dict)
+    # return es_hook.search(query=query_dict)
+    return []
 
 def check_es_data_validity(es_data):
     return True
