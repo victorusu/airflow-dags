@@ -25,6 +25,7 @@ from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchPyt
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
     dagrun_timeout=datetime.timedelta(minutes=5),
+    title='blueprint',
 )
 
 def use_elasticsearch_hook(query_dict):
