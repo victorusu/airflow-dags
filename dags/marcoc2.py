@@ -20,12 +20,6 @@ from airflow.decorators import dag, task
 
 from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchHook
 
-@dag(
-    schedule_interval="0 0 * * *",
-    start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
-    catchup=False,
-    dagrun_timeout=datetime.timedelta(minutes=5),
-)
 
 def use_elasticsearch_hook(query_dict):
     # es_hook = ElasticsearchPythonHook(hosts=["https://elastic-gbets-master:9200"])
@@ -34,6 +28,7 @@ def use_elasticsearch_hook(query_dict):
     # return es_hook.search(query=query_dict)
     return []
 
+
 def check_es_data_validity(es_data):
     return True
 
@@ -41,9 +36,17 @@ def check_es_data_validity(es_data):
 def operate_on_es_data(es_data):
     pass
 
+
 def send_data_back_to_es(es_data, data_stream_name):
     pass
 
+
+@dag(
+    schedule_interval="0 0 * * *",
+    start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
+    catchup=False,
+    dagrun_timeout=datetime.timedelta(minutes=5),
+)
 def marcoc_dag():
 
     es_data = None
