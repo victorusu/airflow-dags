@@ -32,7 +32,7 @@ with DAG(
         # 'trigger_rule': 'all_success'
     },
     description='A simple tutorial DAG',
-    schedule_interval=timedelta(min=1),
+    schedule_interval=timedelta(minutes=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
     tags=['example'],
